@@ -6,9 +6,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import static com.chechel.spring.UrlMapping.ADMIN;
 import static com.chechel.spring.UrlMapping.HELLO;
 import static com.chechel.spring.UrlMapping.LOGIN;
-import static com.chechel.spring.UrlMapping.ROOT;
+import static com.chechel.spring.UrlMapping.USER;
 
 @Configuration
 @EnableWebSecurity
@@ -24,10 +25,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers(HELLO)
-                    .hasRole("USER")
+                    .antMatchers(ADMIN).hasRole("ADMIN")
+                    .antMatchers(USER).hasRole("USER")
+                    .antMatchers(HELLO).permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                    .loginPage(LOGIN).permitAll();
     }
     //@formatter:on
 
