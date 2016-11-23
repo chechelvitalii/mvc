@@ -16,6 +16,7 @@
         <spring.ver>4.3.2.RELEASE</spring.ver>
         <spring.security.ver>4.0.3.RELEASE</spring.security.ver>
         <jstl.version>1.2</jstl.version>
+        <lombok.ver>1.16.8</lombok.ver>
     </properties>
 
     <dependencies>
@@ -51,6 +52,12 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.ver}</version>
         </dependency>
     </dependencies>
 

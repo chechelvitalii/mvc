@@ -1,5 +1,7 @@
 package com.chechel.spring.init;
 
+import com.chechel.spring.UrlMapping;
+import com.chechel.spring.config.WebSecurityConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
@@ -10,10 +12,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import static com.chechel.spring.UrlMapping.ROOT;
+
+
+/**
+ * This class is starting by servlet3.0 container
+ */
 public class ApplicationInitializer implements WebApplicationInitializer {
 
     private static final String CONFIG_LOCATION = "com.chechel.spring.config";
-    private static final String MAPPING_URL = "/*";
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
@@ -21,7 +28,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         servletContext.addListener(new ContextLoaderListener(context));
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcherServlet", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping(MAPPING_URL);
+        dispatcher.addMapping(ROOT);
     }
 
     private AnnotationConfigWebApplicationContext getContext() {
