@@ -7,3 +7,5 @@
                         <div class="alert alert-error">
                           <h1>${error}</h1>
                         </div>
+
+<a href="/logout" class="button">Log Out</a>

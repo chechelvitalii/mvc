@@ -5,10 +5,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
 import static com.chechel.spring.UrlMapping.ADMIN;
 import static com.chechel.spring.UrlMapping.HELLO;
+import static com.chechel.spring.UrlMapping.INDEX;
 import static com.chechel.spring.UrlMapping.LOGIN;
+import static com.chechel.spring.UrlMapping.LOGOUT;
 import static com.chechel.spring.UrlMapping.USER;
 
 @Configuration
@@ -31,7 +34,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage(LOGIN).permitAll();
+                    .loginPage(LOGIN)
+                    .permitAll()
+                .and()
+                .logout()
+        .logoutUrl(LOGOUT);
+//        .logoutSuccessUrl(INDEX)
+//        .invalidateHttpSession(true);
     }
     //@formatter:on
 

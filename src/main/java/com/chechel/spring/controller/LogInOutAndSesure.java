@@ -1,6 +1,7 @@
 package com.chechel.spring.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,15 +22,15 @@ public class LogInOutAndSesure {
         return "login";
     }
 
+    @RequestMapping(LOGOUT)
+    public void logout(Model model,Principal principal) {
+        model.asMap().put("user", principal.getName());
+    }
+
     @RequestMapping(ADMIN)
     @ResponseBody
     public String secureForAdmin() {
         return "secureForAdmin OK";
-    }
-
-    @RequestMapping(LOGOUT)
-    public String logout() {
-        return "logout OK";
     }
 
     @RequestMapping(USER)

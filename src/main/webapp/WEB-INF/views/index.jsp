@@ -1,0 +1,1 @@
+<p>Welcome on index page</p>
