@@ -22,10 +22,10 @@ public class LogInOutAndSesure {
         return "login";
     }
 
-    @RequestMapping(LOGOUT)
-    public void logout(Model model,Principal principal) {
-        model.asMap().put("user", principal.getName());
-    }
+//    @RequestMapping(LOGOUT)
+//    public void logout(Model model,Principal principal) {
+//        model.asMap().put("user", principal.getName());
+//    }
 
     @RequestMapping(ADMIN)
     @ResponseBody
@@ -40,10 +40,10 @@ public class LogInOutAndSesure {
     }
 
     @RequestMapping(ACCESS_DENIED)
-    public ModelAndView accessDeniedHandler(Principal principal) {
+    public ModelAndView accessDenied(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("accessDenied");
-        modelAndView.getModel().put("error", "OOPsss.... " + principal.getName() + " haven't access to resource");
+        modelAndView.getModel().put("user",principal.getName() );
         return modelAndView;
     }
 }
